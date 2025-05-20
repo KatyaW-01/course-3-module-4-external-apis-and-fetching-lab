@@ -6,7 +6,7 @@
 // - Handle the API response and parse the JSON
 // - Log the data to the console for testing
 function fetchWeatherData(city) {
-  fetch("https://api.openweathermap.org/data/3.0/onecall?lat=39.7449&lon=-104.9645&appid=c4c1c6d83f3d1314d8be68babc44438a")
+  fetch("https://api.openweathermap.org/data/2.5/weather?q=denver&appid=c4c1c6d83f3d1314d8be68babc44438a")
     .then (function (response) {
       console.log(response.json())
     })
