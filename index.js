@@ -6,10 +6,16 @@
 // - Handle the API response and parse the JSON
 // - Log the data to the console for testing
 function fetchWeatherData(city) {
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c4c1c6d83f3d1314d8be68babc44438a`)
+  fetch("https://api.openweathermap.org/data/2.5/weather?q="+`${city}`+"&appid=c4c1c6d83f3d1314d8be68babc44438a")
     .then (function (response) {
-      console.log(response.json())
+      console.log(response.json)
+      return response.json() 
+     
     })
+    .then (function (data) {
+      displayWeatherData(data)
+    })
+    
 }
 
 
@@ -23,17 +29,19 @@ function displayWeatherData(data) {
   weatherList.className = "weather-list"
   
   const description = data.weather[0].description
-  const temperature = data.main.temperature
+  console.log("description:",description)
+  const temperature = data.main.temp
+  console.log("temperature:",temperature)
   const humidity = data.main.humidity
+  console.log("humidity:",humidity)
 
-  const weatherDetails = document.CreateElement('li')
-  const weatherDetails2 = document.CreateElement('li')
-  const weatherDetails3 = document.CreateElement('li')
+  const weatherDetails = document.createElement('li')
+  const weatherDetails2 = document.createElement('li')
+  const weatherDetails3 = document.createElement('li')
   weatherDetails.textContent = description
   weatherDetails2.textContent = temperature
   weatherDetails3.textContent = humidity
   weatherList.append(weatherDetails,weatherDetails2,weatherDetails3)
-  
 
 }
 
@@ -41,7 +49,17 @@ function displayWeatherData(data) {
 // - Add an event listener to the button to capture user input
 // - Retrieve the value from the input field
 // - Call `fetchWeatherData(city)` with the user-provided city name
+const button = document.querySelector("#fetch-weather")
+const input = document.querySelector("#city-input")
 
+
+button.addEventListener("click", () => {
+  fetchWeatherData(input.value)
+  console.log(input.value)
+  console.log(typeof input.value)
+})
+  
+  
 // Step 4: Implement Error Handling
 // - Create a function `displayError(message)`
 // - Handle invalid city names or network issues
