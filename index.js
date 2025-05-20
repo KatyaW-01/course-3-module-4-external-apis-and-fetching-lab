@@ -6,7 +6,7 @@
 // - Handle the API response and parse the JSON
 // - Log the data to the console for testing
 function fetchWeatherData(city) {
-  fetch("https://api.openweathermap.org/data/2.5/weather?q=denver&appid=c4c1c6d83f3d1314d8be68babc44438a")
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c4c1c6d83f3d1314d8be68babc44438a`)
     .then (function (response) {
       console.log(response.json())
     })
@@ -17,6 +17,25 @@ function fetchWeatherData(city) {
 // - Create a function `displayWeather(data)`
 // - Dynamically update the DOM with weather details (e.g., temperature, humidity, weather description)
 // - Ensure the function can handle the data format provided by the API
+function displayWeatherData(data) {
+  const weatherDisplay = document.querySelector("#weather-display")
+  const weatherList = document.createElement('ul')
+  weatherList.className = "weather-list"
+  
+  const description = data.weather[0].description
+  const temperature = data.main.temperature
+  const humidity = data.main.humidity
+
+  const weatherDetails = document.CreateElement('li')
+  const weatherDetails2 = document.CreateElement('li')
+  const weatherDetails3 = document.CreateElement('li')
+  weatherDetails.textContent = description
+  weatherDetails2.textContent = temperature
+  weatherDetails3.textContent = humidity
+  weatherList.append(weatherDetails,weatherDetails2,weatherDetails3)
+  
+
+}
 
 // Step 3: Handle User Input
 // - Add an event listener to the button to capture user input
