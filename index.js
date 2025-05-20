@@ -6,7 +6,7 @@
 // - Handle the API response and parse the JSON
 // - Log the data to the console for testing
 function fetchWeatherData(city) {
-  fetch("https://api.openweathermap.org/data/2.5/weather?q="+`${city}`+"&appid=c4c1c6d83f3d1314d8be68babc44438a")
+  fetch("https://api.openweathermap.org/data/2.5/weather?q="+`${city}`+"&units=imperial&appid=c4c1c6d83f3d1314d8be68babc44438a")
     .then (function (response) {
       console.log(response.json)
       return response.json() 
@@ -38,10 +38,11 @@ function displayWeatherData(data) {
   const weatherDetails = document.createElement('li')
   const weatherDetails2 = document.createElement('li')
   const weatherDetails3 = document.createElement('li')
-  weatherDetails.textContent = description
-  weatherDetails2.textContent = temperature
-  weatherDetails3.textContent = humidity
+  weatherDetails.textContent = `Forecast: ${description}`
+  weatherDetails2.textContent = `Temperature: ${temperature}`
+  weatherDetails3.textContent = `Humidity: ${humidity}`
   weatherList.append(weatherDetails,weatherDetails2,weatherDetails3)
+  weatherDisplay.append(weatherList)
 
 }
 
