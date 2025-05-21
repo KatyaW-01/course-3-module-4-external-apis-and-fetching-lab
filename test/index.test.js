@@ -49,7 +49,11 @@ describe('displayWeather', () => {
   let weatherDisplay
 
   beforeEach(() => {
-    document.body.innerHTML = '<div id="weather-display"></div>'
+    document.body.innerHTML = `<h1>Weather App</h1>
+  <input type="text" id="city-input" placeholder="Enter city name">
+  <button id="fetch-weather">Get Weather</button>
+  <div id="weather-display"></div>
+  <div id="error-message" class="hidden"></div>`
     weatherDisplay = document.getElementById('weather-display')
   })
 

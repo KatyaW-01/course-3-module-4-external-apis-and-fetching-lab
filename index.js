@@ -19,12 +19,11 @@
     
 // }
 
-
 // Step 2: Display Weather Data on the Page
 // - Create a function `displayWeather(data)`
 // - Dynamically update the DOM with weather details (e.g., temperature, humidity, weather description)
 // - Ensure the function can handle the data format provided by the API
-function displayWeatherData(data) {
+function displayWeather(data) {
   const weatherDisplay = document.querySelector("#weather-display")
   const weatherList = document.createElement('ul')
   weatherList.className = "weather-list"
@@ -54,14 +53,8 @@ function displayWeatherData(data) {
 const button = document.querySelector("#fetch-weather")
 const input = document.querySelector("#city-input")
 
+button.addEventListener("click", fetchWeatherData(input.value))
 
-button.addEventListener("click", () => {
-  fetchWeatherData(input.value)
-  console.log(input.value)
-  console.log(typeof input.value)
-})
-  
-  
 // Step 4: Implement Error Handling
 // - Create a function `displayError(message)`
 // - Handle invalid city names or network issues
@@ -78,7 +71,7 @@ async function fetchWeatherData(city) {
 
     const data = await response.json()
 
-    displayWeatherData(data)
+    displayWeather(data)
   } catch (error) {
     const weatherDisplay = document.querySelector("#weather-display")
     const errorList = document.createElement('ul')
