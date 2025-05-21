@@ -20,7 +20,6 @@ async function fetchWeatherData(city) {
   }
 }
 
-
 // Step 2: Display Weather Data on the Page
 // - Create a function `displayWeather(data)`
 // - Dynamically update the DOM with weather details (e.g., temperature, humidity, weather description)
@@ -53,12 +52,17 @@ function displayWeather(data) {
 // - Retrieve the value from the input field
 // - Call `fetchWeatherData(city)` with the user-provided city name
 
-const button = document.querySelector("#fetch-weather")
-const input = document.querySelector("#city-input")
+function initialize() {
+  const button = document.querySelector("#fetch-weather")
+  const input = document.querySelector("#city-input")
 
-button.addEventListener("click", () => {
-  fetchWeatherData(input.value)
-})
+  button.addEventListener("click", () => {
+    fetchWeatherData(input.value)
+  })
+}
+
+initialize()
+
   
 
 // Step 4: Implement Error Handling
@@ -91,3 +95,5 @@ function displayError(message) {
 
 // Event Listener for Fetch Button
 // - Attach the main event listener to the button to start the process
+
+
