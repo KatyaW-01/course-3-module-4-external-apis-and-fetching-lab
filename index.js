@@ -5,18 +5,19 @@
 // - Use fetch() to retrieve data from the OpenWeather API
 // - Handle the API response and parse the JSON
 // - Log the data to the console for testing
-function fetchWeatherData(city) {
-  fetch("https://api.openweathermap.org/data/2.5/weather?q="+`${city}`+"&units=imperial&appid=c4c1c6d83f3d1314d8be68babc44438a")
-    .then (function (response) {
-      console.log(response.json)
-      return response.json() 
+
+// function fetchWeatherData(city) {
+//   fetch("https://api.openweathermap.org/data/2.5/weather?q="+`${city}`+"&units=imperial&appid=c4c1c6d83f3d1314d8be68babc44438a")
+//     .then (function (response) {
+//       console.log(response.json)
+//       return response.json() 
      
-    })
-    .then (function (data) {
-      displayWeatherData(data)
-    })
+//     })
+//     .then (function (data) {
+//       displayWeatherData(data)
+//     })
     
-}
+// }
 
 
 // Step 2: Display Weather Data on the Page
@@ -70,7 +71,26 @@ button.addEventListener("click", () => {
 // - Refactor repetitive code into reusable functions
 // - Use async/await for better readability and to handle asynchronous operations
 // - Ensure all reusable functions are modular and clearly named
+async function fetchWeatherData(city) {
+  try {
+    const response = await
+    fetch ("https://api.openweathermap.org/data/2.5/weather?q="+`${city}`+"&units=imperial&appid=c4c1c6d83f3d1314d8be68babc44438a")
 
+    const data = await response.json()
+
+    displayWeatherData(data)
+  } catch (error) {
+    const weatherDisplay = document.querySelector("#weather-display")
+    const errorList = document.createElement('ul')
+    const errorMessage = document.createElement('li')
+
+    errorMessage.textContent = 'Failed to load weather data. Please try again.'
+
+    errorList.append(errorMessage)
+    weatherDisplay.append(errorList)
+    console.error('Error fetching user data:', error);
+  }
+}
 // BONUS: Loading Indicator
 // - Optionally, add a loading spinner or text while the API request is in progress
 
